@@ -1,3 +1,4 @@
+import React, { Suspense } from 'react';
 import Link from 'next/link'
 import { Search, Users, Briefcase, TrendingUp } from 'lucide-react'
 
@@ -92,13 +93,13 @@ export default function Home() {
               href="/auth/signup?role=USER"
               className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
             >
-              I'm Looking for a Job
+              I&apos;m Looking for a Job
             </Link>
             <Link
               href="/auth/signup?role=ADMIN"
               className="bg-green-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors"
             >
-              I'm Hiring
+              I&apos;m Hiring
             </Link>
           </div>
         </div>
