@@ -6,6 +6,7 @@ import { jobSchema } from '@/lib/validations'
 
 export async function GET(request) {
   try {
+    const session = await getServerSession(authOptions)
     const { searchParams } = new URL(request.url)
     const page = parseInt(searchParams.get('page') || '1')
     const limit = parseInt(searchParams.get('limit') || '10')
@@ -32,6 +33,11 @@ export async function GET(request) {
 
     if (location) {
       where.location = { contains: location, mode: 'insensitive' }
+    }
+
+    // Restrict admin to only their jobs
+    if (session?.user?.role === 'ADMIN') {
+      where.createdBy = session.user.id
     }
 
     const jobs = await prisma.job.findMany({
